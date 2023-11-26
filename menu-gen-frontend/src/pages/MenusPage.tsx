@@ -12,7 +12,7 @@ import {
     Link,
   } from "@nextui-org/react";
 
-interface Menu {
+export interface Menu {
   _id: string;
   restaurant_name: string;
   restaurant_slogan: string;
@@ -22,7 +22,7 @@ interface Menu {
   food_items: FoodItem[];
 }
 
-interface FoodItem {
+export interface FoodItem {
   title: string;
   description: string;
   price: string;
