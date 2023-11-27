@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     Card,
     CardHeader,
@@ -32,6 +32,10 @@ export interface FoodItem {
 
 const MenusPage = () => {
   const [menus, setMenus] = useState<Menu[]>([]);
+  // const startersRef = useRef<HTMLDivElement>(null);
+  // // const breakfastRef = useRef<HTMLDivElement>(null);
+  // // const dinnerRef = useRef<HTMLDivElement>(null);
+  // // const drinksRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetchMenus();

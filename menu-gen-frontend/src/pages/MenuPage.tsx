@@ -1,11 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { Card, CardHeader, CardBody, CardFooter, Image } from '@nextui-org/react';
-import { Menu, FoodItem } from './MenusPage';
+import React, { useState, useEffect, useRef } from "react";
+import { useParams } from "react-router-dom";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Image,
+} from "@nextui-org/react";
+import { Menu, FoodItem } from "./MenusPage";
 
 const MenuPage = () => {
   const [menu, setMenu] = useState<Menu | null>(null);
   const { id } = useParams<{ id: string }>();
+  const startersRef = useRef<HTMLDivElement>(null);
+  // const breakfastRef = useRef<HTMLDivElement>(null);
+  // const dinnerRef = useRef<HTMLDivElement>(null);
+  // const drinksRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (id) {
@@ -15,21 +25,24 @@ const MenuPage = () => {
 
   const fetchMenu = async (id: string) => {
     try {
-      const response = await fetch(`${import.meta.env["VITE_BACKEND_URI"]}/menu/${id}`, {
-        method: 'GET',
-        headers: {
-          'x-access-token': localStorage.token,
-        },
-      });
+      const response = await fetch(
+        `${import.meta.env["VITE_BACKEND_URI"]}/menu/${id}`,
+        {
+          method: "GET",
+          headers: {
+            "x-access-token": localStorage.token,
+          },
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
         setMenu(data);
       } else {
-        console.error('Failed to fetch menu');
+        console.error("Failed to fetch menu");
       }
     } catch (error) {
-      console.error('There was an error fetching the menu', error);
+      console.error("There was an error fetching the menu", error);
     }
   };
 
@@ -51,25 +64,60 @@ const MenuPage = () => {
             className="mb-4"
           />
         </CardHeader>
-        <CardBody className="flex flex-col gap-3 items-center mb-2">
-          {menu.food_items.map((item) => (
-            <Card key={item.title} className="mb-4 flex flex-col items-center min-w-[256px] pb-4">
-              <h3 className="text-xl font-bold mb-1">{item.title}</h3>
-              <p className="mb-1">{item.description}</p>
-              <p>{'$' + (item.price ? item.price : 0)}</p>
-              <p className="mb-1">{item.dietary_restrictions}</p>
-              <p className="mb-1">{item.vegetarian ? 'Vegetarian' : ''}</p>
-              <p className="mb-1">{item.spicy ? 'Spicy' : ''}</p>
-              <p className="mb-1">{item.gluten_free ? 'Gluten-Free' : ''}</p>
-              <Image
-                src={item.picture_url}
-                alt={item.title}
-                width={128}
-                height={128}
-              />
-            </Card>
-          ))}
-        </CardBody>
+        {/* ----- */}
+        <div ref={startersRef} className="w-full px-[10px]"></div>
+        <h1 className="text-[#FACE8D] font-dancing text-[64px] leading-none mb-[32px]">
+          Starters
+        </h1>
+        {/* ----- */}
+        {/* <CardBody className="flex flex-col gap-3 items-center mb-2"> */}
+        {menu.food_items.map((item) => (
+          // <Card key={item.title} className="mb-4 flex flex-col items-center min-w-[256px] pb-4">
+          //   <h3 className="text-xl font-bold mb-1">{item.title}</h3>
+          //   <p className="mb-1">{item.description}</p>
+          //   <p>{'$' + (item.price ? item.price : 0)}</p>
+          //   <p className="mb-1">{item.dietary_restrictions}</p>
+          //   <p className="mb-1">{item.vegetarian ? 'Vegetarian' : ''}</p>
+          //   <p className="mb-1">{item.spicy ? 'Spicy' : ''}</p>
+          //   <p className="mb-1">{item.gluten_free ? 'Gluten-Free' : ''}</p>
+          //   <Image
+          //     src={item.picture_url}
+          //     alt={item.title}
+          //     width={128}
+          //     height={128}
+          //   />
+          // </Card>
+          <div
+            // style={{
+            //   border: item.title === 3 ? `1px solid #FACE8D` : "1px solid black",
+            //   borderRadius: 10,
+            // }}
+            key={item.title}
+            className="flex w-full mt-[16px] cursor-pointer hover:scale-95 duration-150"
+          >
+            <Image
+              src={item.picture_url}
+              alt={item.title}
+              width={128}
+              height={128}
+            />
+            <div className="w-full ml-[24px] pr-[20px]">
+              <div className="w-full flex items-center justify-between">
+                <h3 className="text-xl font-bold mb-1">{item.title}</h3>
+                <p className="text-white text-opacity-90">
+                  {"$" + (item.price ? item.price : 0)}
+                </p>
+              </div>
+              <p className="text-[16px] text-white text-opacity-50">
+                {item.description}
+              </p>
+              <p className="mb-1">{item.vegetarian ? "Vegetarian" : ""}</p>
+              <p className="mb-1">{item.spicy ? "Spicy" : ""}</p>
+              <p className="mb-1">{item.gluten_free ? "Gluten-Free" : ""}</p>
+            </div>
+          </div>
+        ))}
+        {/* </CardBody> */}
       </Card>
     </div>
   );
