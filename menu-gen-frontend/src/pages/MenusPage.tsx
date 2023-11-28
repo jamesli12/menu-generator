@@ -8,6 +8,9 @@ import {
     Image,
   } from "@nextui-org/react";
 
+  import { useNavigate } from 'react-router-dom';
+
+
 export interface Menu {
   _id: string;
   restaurant_name: string;
@@ -32,10 +35,16 @@ export interface FoodItem {
 
 const MenusPage = () => {
   const [menus, setMenus] = useState<Menu[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchMenus();
   }, []);
+
+  const goBackToMenus = () => {
+    navigate('/input');
+  };
+
 
   const fetchMenus = async () => {
     try {
@@ -59,6 +68,9 @@ const MenusPage = () => {
 
   return (
     <div className="min-h-screen p-4 bg-gray-100">
+      <button onClick={goBackToMenus} className="mb-4 px-4 py-2 bg-gray-300 text-black rounded">
+          Add More Menu
+        </button>
       <h1 className="text-4xl font-bold mb-4">Menus</h1>
       {menus.map((menu) => (
         <Card key={menu._id} shadow-sm className="max-w-[400px]">
