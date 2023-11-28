@@ -107,8 +107,8 @@ const InputPage = () => {
       formData.append(`foodItems[${index}].description`, item.description);
       formData.append(`foodItems[${index}].price`, item.price);
       formData.append(`foodItems[${index}].dietaryRestrictions`, item.dietaryRestrictions);
-      formData.append(`foodItems[${index}].vegetarian`, String(item.vegetarian));
       formData.append(`foodItems[${index}].spicy`, String(item.spicy));
+      formData.append(`foodItems[${index}].vegetarian`, String(item.vegetarian));
       formData.append(`foodItems[${index}].glutenFree`, String(item.glutenFree));
 
       if (item.picture) {
@@ -131,11 +131,11 @@ const InputPage = () => {
         console.log(responseData)
         window.location.href = `./menu/${responseData.id}`;
       } else {
-        console.error('Form submission failed');
+        console.error('Form submission failed!');
       }
     }
       } catch (error) {
-        console.error('There was an error submitting the form', error);
+        console.error('There was an error submitting the form!', error);
       }
   };
 
