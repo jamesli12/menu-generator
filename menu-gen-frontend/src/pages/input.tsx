@@ -25,6 +25,12 @@ interface FoodItem {
   vegetarian: boolean;
   spicy: boolean;
   glutenFree: boolean;
+  //==============
+  //add categories:
+  breakfast: boolean;
+  dinner: boolean;
+  drinks: boolean;
+  //=============
 }
 
 
@@ -44,6 +50,10 @@ const InputPage = () => {
       vegetarian: false,
       spicy: false,
       glutenFree: false,
+      //categories
+      breakfast: false,
+      dinner: false,
+      drinks: false,
     },
   ]);
   const {
@@ -70,6 +80,10 @@ const InputPage = () => {
         vegetarian: false,
         spicy: false,
         glutenFree: false,
+        //categories
+        breakfast: false,
+        dinner: false,
+        drinks: false,
       },
     ]);
   };
@@ -110,6 +124,11 @@ const InputPage = () => {
       formData.append(`foodItems[${index}].vegetarian`, String(item.vegetarian));
       formData.append(`foodItems[${index}].spicy`, String(item.spicy));
       formData.append(`foodItems[${index}].glutenFree`, String(item.glutenFree));
+      //categories:
+      formData.append(`foodItems[${index}].breakfast`, String(item.breakfast));
+      formData.append(`foodItems[${index}].dinner`, String(item.dinner));
+      formData.append(`foodItems[${index}].drinks`, String(item.drinks));
+
 
       if (item.picture) {
         formData.append(`foodItems[${index}].picture`, item.picture);
@@ -287,7 +306,41 @@ const InputPage = () => {
             >
               Gluten-Free
             </Checkbox>
+            {/* categories */}
+            <Checkbox
+              checked={item.breakfast}
+              radius="sm"
+              size="sm"
+              className='mb-3 mx-3'
+              onChange={(e) =>
+                handleFoodItemChange(index, "breakfast", e.target.checked)
+              }
+            >
+              Breakfast
+            </Checkbox>
+            <Checkbox
+              checked={item.dinner}
+              radius="sm"
+              size="sm"
+              className='mb-3 mx-3'
+              onChange={(e) =>
+                handleFoodItemChange(index, "dinner", e.target.checked)
+              }
+            >
+              Dinner
+            </Checkbox>
           </div>
+          <Checkbox
+              checked={item.drinks}
+              radius="sm"
+              size="sm"
+              className='mb-3 mx-3'
+              onChange={(e) =>
+                handleFoodItemChange(index, "drinks", e.target.checked)
+              }
+            >
+              drinks
+            </Checkbox>
 
           <div
             style={{

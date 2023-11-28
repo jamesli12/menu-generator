@@ -96,7 +96,6 @@ const MenusPage = () => {
                 <p>{item.vegetarian ? "Vegetarian" : ""}</p>
                 <p>{item.spicy ? "Spicy" : ""}</p>
                 <p>{item.gluten_free ? "Gluten-Free" : ""}</p>
-                {/* add other categories: breakfast, dinner, drinks */}
                 <p>{item.breakfast ? "breakfast" : ""}</p>
                 <p>{item.dinner ? "dinner" : ""}</p>
                 <p>{item.drinks ? "drinks" : ""}</p>
@@ -114,7 +113,7 @@ const MenusPage = () => {
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+                className="inline-block mt-4 px-4 py-2 bg-green-500 text-white rounded"
               >
                 View Menu
               </a>
