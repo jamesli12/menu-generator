@@ -2,16 +2,27 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, CardHeader, CardBody, Image } from '@nextui-org/react';
 import { Menu } from './MenusPage';
+import { useNavigate } from 'react-router-dom';
+
 
 const MenuPage = () => {
   const [menu, setMenu] = useState<Menu | null>(null);
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id) {
       fetchMenu(id);
     }
   }, [id]);
+
+  const addmoremenu = () => {
+    navigate('/input');
+  };
+
+  const backtomenu = () => {
+    navigate('/menus');
+  };
 
   const fetchMenu = async (id: string) => {
     try {
@@ -39,6 +50,12 @@ const MenuPage = () => {
 
   return (
     <div className="min-h-screen p-5 bg-gray-100">
+      <button onClick={addmoremenu} className="mb-4 px-4 py-2 bg-gray-300 text-black rounded">
+          Add More Menu
+        </button>
+        <button onClick={backtomenu} className="mb-4 px-4 py-2 bg-gray-300 text-black rounded">
+          Back to Menus
+        </button>
       <Card shadow-sm className="max-w-[400px] pb-9">
         <CardHeader className="flex flex-col gap-3">
           <h1 className="text-4xl font-bold mb-4">{menu.restaurant_name}</h1>
