@@ -123,8 +123,7 @@ The app should be available on http://localhost:5173
 
 #### Menus and QRcode generating page
 
-![image](https://github.com/jamesli12/menu-generator/assets/91359766/115a042f-227d-464d-8e06-6035c3a5807a)
-
+<img width="405" alt="image" src="https://github.com/jamesli12/menu-generator/assets/91359766/226667fc-c905-4ea3-8b1d-e5f8ad96edf8">
 
 ## Troubleshooting <a name="troubleshooting"></a>
 
