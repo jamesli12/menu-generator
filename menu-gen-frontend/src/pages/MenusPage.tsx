@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 import {
-    Card,
-    CardHeader,
-    CardBody,
-    CardFooter,
-    Link,
-    Image,
-  } from "@nextui-org/react";
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Link,
+  Image,
+} from "@nextui-org/react";
 
 export interface Menu {
   _id: string;
@@ -26,16 +26,18 @@ export interface FoodItem {
   vegetarian: boolean;
   spicy: boolean;
   gluten_free: boolean;
+  //==============
+  //add categories:
+  breakfast: boolean;
+  dinner: boolean;
+  drinks: boolean;
+  //=============
   picture_url: string;
   picture_path: string;
 }
 
 const MenusPage = () => {
   const [menus, setMenus] = useState<Menu[]>([]);
-  // const startersRef = useRef<HTMLDivElement>(null);
-  // // const breakfastRef = useRef<HTMLDivElement>(null);
-  // // const dinnerRef = useRef<HTMLDivElement>(null);
-  // // const drinksRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetchMenus();
@@ -43,21 +45,24 @@ const MenusPage = () => {
 
   const fetchMenus = async () => {
     try {
-      const response = await fetch(import.meta.env["VITE_BACKEND_URI"] + '/menus', {
-        method: 'GET',
-        headers: {
-          'x-access-token': localStorage.token,
-        },
-      });
+      const response = await fetch(
+        import.meta.env["VITE_BACKEND_URI"] + "/menus",
+        {
+          method: "GET",
+          headers: {
+            "x-access-token": localStorage.token,
+          },
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
         setMenus(data);
       } else {
-        console.error('Failed to fetch menus');
+        console.error("Failed to fetch menus");
       }
     } catch (error) {
-      console.error('There was an error fetching the menus', error);
+      console.error("There was an error fetching the menus", error);
     }
   };
 
@@ -68,10 +73,10 @@ const MenusPage = () => {
         <Card key={menu._id} shadow-sm className="max-w-[400px]">
           <CardHeader className="flex flex-col gap-3">
             <div className="items-start">
-          <h2 className="text-2xl font-bold">{menu.restaurant_name}</h2>
-          <p>{menu.restaurant_slogan}</p>
-          </div>
-          <Image
+              <h2 className="text-2xl font-bold">{menu.restaurant_name}</h2>
+              <p>{menu.restaurant_slogan}</p>
+            </div>
+            <Image
               src={menu.restaurant_logo_url}
               alt={menu.restaurant_name}
               width={256}
@@ -79,35 +84,53 @@ const MenusPage = () => {
             />
           </CardHeader>
           <CardBody className="flex flex-col gap-3 items-center mb-2">
-          {menu.food_items.map((item) => (
-            <Card key={item.title} className="gap-1 pb-5 mb-3 flex flex-col items-center min-w-[256px]">
-              <h3 className="text-xl font-bold ">{item.title}</h3>
-              <p>{item.description}</p>
-              <p>{'$' + (item.price ? item.price : 0)}</p>
-              <p>{item.dietary_restrictions}</p>
-              <p>{item.vegetarian ? 'Vegetarian' : ''}</p>
-              <p>{item.spicy ? 'Spicy' : ''}</p>
-              <p>{item.gluten_free ? 'Gluten-Free' : ''}</p>
-              <Image
-                src={item.picture_url}
-                alt={item.title}
-                width={128}
-                height={128}
-              />
+            {menu.food_items.map((item) => (
+              <Card
+                key={item.title}
+                className="gap-1 pb-5 mb-3 flex flex-col items-center min-w-[256px]"
+              >
+                <h3 className="text-xl font-bold ">{item.title}</h3>
+                <p>{item.description}</p>
+                <p>{"$" + (item.price ? item.price : 0)}</p>
+                <p>{item.dietary_restrictions}</p>
+                <p>{item.vegetarian ? "Vegetarian" : ""}</p>
+                <p>{item.spicy ? "Spicy" : ""}</p>
+                <p>{item.gluten_free ? "Gluten-Free" : ""}</p>
+                {/* add other categories: breakfast, dinner, drinks */}
+                <p>{item.breakfast ? "breakfast" : ""}</p>
+                <p>{item.dinner ? "dinner" : ""}</p>
+                <p>{item.drinks ? "drinks" : ""}</p>
+                <Image
+                  src={item.picture_url}
+                  alt={item.title}
+                  width={128}
+                  height={128}
+                />
               </Card>
-          ))}
+            ))}
           </CardBody>
           <CardFooter className="flex flex-col items-center mb-3">
-          <Link href={`/menu/${menu._id}`}>
-            <a target="_blank" rel="noopener noreferrer" className="inline-block mt-4 px-4 py-2 bg-blue-500 text-white rounded">View Menu</a>
-          </Link>
+            <Link href={`/menu/${menu._id}`}>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+              >
+                View Menu
+              </a>
+            </Link>
             <button
               className="inline-block mt-4 px-4 py-2 bg-green-500 text-white rounded"
-              onClick={() => window.open(`https://qrickit.com/api/qr.php?d=${window.location.origin}/menu/${menu._id}&addtext=Scan%20this%20for%20menu&qrsize=150&t=p&e=m`, "_blank")}
+              onClick={() =>
+                window.open(
+                  `https://qrickit.com/api/qr.php?d=${window.location.origin}/menu/${menu._id}&addtext=Scan%20this%20for%20menu&qrsize=150&t=p&e=m`,
+                  "_blank"
+                )
+              }
             >
               Open QR Code
             </button>
-        </CardFooter>
+          </CardFooter>
         </Card>
       ))}
     </div>
