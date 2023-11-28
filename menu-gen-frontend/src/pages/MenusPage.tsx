@@ -19,6 +19,7 @@ export interface Menu {
 }
 
 export interface FoodItem {
+  type: string;
   title: string;
   description: string;
   price: string;
