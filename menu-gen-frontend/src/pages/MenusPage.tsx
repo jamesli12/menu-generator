@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import QRCode from 'qrcode.react';
 import {
     Card,
     CardHeader,
@@ -97,12 +98,14 @@ const MenusPage = () => {
           <Link href={`/menu/${menu._id}`}>
             <a target="_blank" rel="noopener noreferrer" className="inline-block mt-4 px-4 py-2 bg-blue-500 text-white rounded">View Menu</a>
           </Link>
-            <button
-              className="inline-block mt-4 px-4 py-2 bg-green-500 text-white rounded"
-              onClick={() => window.open(`https://qrickit.com/api/qr.php?d=${window.location.origin}/menu/${menu._id}&addtext=Scan%20this%20for%20menu&qrsize=150&t=p&e=m`, "_blank")}
-            >
-              Open QR Code
-            </button>
+          <div className="mb-3">
+            <QRCode
+                value={`http://cs3300-gcp-assignment-401202.uc.r.appspot.com/menu/${menu._id}`}
+                size={150}
+                level="M"
+                includeMargin={true}
+            />
+          </div>
         </CardFooter>
         </Card>
       ))}

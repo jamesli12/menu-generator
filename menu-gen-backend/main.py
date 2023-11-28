@@ -2,6 +2,7 @@ from functools import wraps
 from flask import Flask, request, jsonify, send_from_directory, redirect, url_for, render_template
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
+from werkzeug.datastructures import FileStorage
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader
@@ -14,6 +15,10 @@ import json
 import jwt
 from datetime import datetime, timedelta
 import uuid
+from flask_googlestorage import GoogleStorage, Bucket
+
+files = Bucket("files")
+storage = GoogleStorage(files)
 
 load_dotenv()
 MONGO_URI = os.getenv('MONGO_URI')
@@ -27,6 +32,14 @@ collection = db.menus
 users_collection = db.users
 
 app = Flask(__name__)
+app.config.update(
+        GOOGLE_APPLICATION_CREDENTIALS = os.path.join(app.root_path, 'hello.json'),
+        GOOGLE_STORAGE_LOCAL_DEST = "tmp",
+        GOOGLE_STORAGE_SIGNATURE = {"expiration": timedelta(minutes=5)},
+        GOOGLE_STORAGE_FILES_BUCKET = "files-restaurant"
+    )
+storage.init_app(app)
+
 CORS(app)
 
 def generate_pdf(food_items, upload_folder):
@@ -47,14 +60,13 @@ def generate_pdf(food_items, upload_folder):
             try:
                 picture = ImageReader(picture_path)
                 c.drawImage(picture, 100, y_position - 240, width=200, height=200, preserveAspectRatio=True, mask='auto')
-                y_position -= 280  # Adjust space for image
+                y_position -= 280
             except Exception as e:
                 print(f"Error loading image {picture_path}: {e}")
                 traceback.print_exc()
         else:
-            y_position -= 60  # Adjust space for text only
+            y_position -= 60
 
-        # Check for end of page and create a new page if necessary
         if y_position <= 100:
             c.showPage()
             y_position = 750
@@ -72,7 +84,7 @@ def token_required(f):
             return jsonify({'message' : 'Token is missing'}), 401
         try:
             data = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
-            #do this with pymongo
+
             u = users_collection.find_one({'public_id': data['public_id']})
             if u:
                 current_user = json.dumps(u, default=str)
@@ -83,7 +95,7 @@ def token_required(f):
             return jsonify({
                 'message' : 'Token is invalid.'
             }), 401
-        # returns the current logged in users context to the routes
+
         return  f(current_user, *args, **kwargs)
   
     return decorated
@@ -110,22 +122,27 @@ def register():
         }, SECRET_KEY)
     return jsonify({'token': token.decode('UTF-8')})
 
-@app.route('/login', methods =['POST'])
+@app.route('/login', methods=['POST'])
 def login():
-    data = request.form
-    email, password = data.get('email'), data.get('password')
+    credentials = request.form
+    email = credentials.get('email')
+    password = credentials.get('password')
+
     if not email or not password:
-        return jsonify({'message': 'Missing data!'}), 400
-    u = users_collection.find_one({'email': email, 'password': password})
-    if not u:
-        return jsonify({'message': 'SUCCESS'}), 404
-    if u['password'] == password:
-        token = jwt.encode({
-            'public_id': u['public_id'],
-            'exp': datetime.utcnow() + timedelta(minutes=30)
-        }, SECRET_KEY)
-        return jsonify({'token': token})
-    return jsonify({'message': 'Invalid credentials!'}), 401
+        return jsonify({'message': 'Please provide both email and password.'}), 400
+
+    user = users_collection.find_one({'email': email})
+
+    if user is None or user.get('password') != password:
+        return jsonify({'message': 'Invalid email or password.'}), 401
+
+    token = jwt.encode({
+        'public_id': user['public_id'],
+        'exp': datetime.utcnow() + timedelta(minutes=30)
+    }, SECRET_KEY, algorithm='HS256')
+
+    return jsonify({'token': token.decode('UTF-8')}), 200
+
 
 @app.route('/submit', methods=['POST'])
 @token_required
@@ -134,14 +151,10 @@ def submit_form(current_user):
     restaurant_slogan = request.form.get('restaurantSlogan', '')
     restaurant_logo = request.files.get('restaurantLogo')
     logo_url = ''
-    logo_path = ''
 
     if restaurant_logo:
-        logo_filename = secure_filename(restaurant_logo.filename)
-        logo_path = os.path.join(UPLOAD_FOLDER, logo_filename)
-        restaurant_logo.save(logo_path)
-        logo_url = f"{BACKEND_URL}/{UPLOAD_FOLDER}/{logo_filename}"
-
+        name = files.save(restaurant_logo, public=True)
+        logo_url = str(files.url(str(name)))
     food_items = []
     index = 0
     while True:
@@ -156,13 +169,10 @@ def submit_form(current_user):
         gluten_free = request.form.get(f'foodItems[{index}].glutenFree', 'false') == 'true'
         picture = request.files.get(f'foodItems[{index}].picture')
         picture_url = ''
-        picture_path = ''
 
         if picture:
-            picture_filename = secure_filename(picture.filename)
-            picture_path = os.path.join(UPLOAD_FOLDER, picture_filename)
-            picture.save(picture_path)
-            picture_url = f"{BACKEND_URL}/{UPLOAD_FOLDER}/{picture_filename}"
+            name = files.save(picture, public=True)
+            picture_url = str(files.url(str(name)))
 
         item_data = {
             'title': title,
@@ -172,8 +182,7 @@ def submit_form(current_user):
             'vegetarian': vegetarian,
             'spicy': spicy,
             'gluten_free': gluten_free,
-            'picture_url': picture_url,
-            'picture_path': picture_path
+            'picture_url': picture_url
         }
 
         food_items.append(item_data)
@@ -184,7 +193,6 @@ def submit_form(current_user):
         'restaurant_name': restaurant_name,
         'restaurant_slogan': restaurant_slogan,
         'restaurant_logo_url': logo_url,
-        'restaurant_logo_path': logo_path,
         'owner': ObjectId(user_json['_id']),
         'food_items': food_items
     }
