@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { Card, CardHeader, CardBody, Image } from '@nextui-org/react';
-import { Menu } from './MenusPage';
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { Card, CardHeader, CardBody, Image } from "@nextui-org/react";
+import { Menu } from "./MenusPage";
 
 const MenuPage = () => {
   const [menu, setMenu] = useState<Menu | null>(null);
@@ -15,21 +15,24 @@ const MenuPage = () => {
 
   const fetchMenu = async (id: string) => {
     try {
-      const response = await fetch(`${import.meta.env["VITE_BACKEND_URI"]}/menu/${id}`, {
-        method: 'GET',
-        headers: {
-          'x-access-token': localStorage.token,
-        },
-      });
+      const response = await fetch(
+        `${import.meta.env["VITE_BACKEND_URI"]}/menu/${id}`,
+        {
+          method: "GET",
+          headers: {
+            "x-access-token": localStorage.token,
+          },
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
         setMenu(data);
       } else {
-        console.error('Failed to fetch menu');
+        console.error("Failed to fetch menu");
       }
     } catch (error) {
-      console.error('There was an error fetching the menu', error);
+      console.error("There was an error fetching the menu", error);
     }
   };
 
@@ -53,14 +56,17 @@ const MenuPage = () => {
         </CardHeader>
         <CardBody className="flex flex-col gap-3 items-center mb-2">
           {menu.food_items.map((item) => (
-            <Card key={item.title} className="mb-4 flex flex-col items-center min-w-[256px] pb-4">
+            <Card
+              key={item.title}
+              className="mb-4 flex flex-col items-center min-w-[256px] pb-4"
+            >
               <h3 className="text-xl font-bold mb-1">{item.title}</h3>
               <p className="mb-1">{item.description}</p>
-              <p>{'$' + (item.price ? item.price : 0)}</p>
+              <p>{"$" + (item.price ? item.price : 0)}</p>
               <p className="mb-1">{item.dietary_restrictions}</p>
-              <p className="mb-1">{item.vegetarian ? 'Vegetarian' : ''}</p>
-              <p className="mb-1">{item.spicy ? 'Spicy' : ''}</p>
-              <p className="mb-1">{item.gluten_free ? 'Gluten-Free' : ''}</p>
+              <p className="mb-1">{item.vegetarian ? "Vegetarian" : ""}</p>
+              <p className="mb-1">{item.spicy ? "Spicy" : ""}</p>
+              <p className="mb-1">{item.gluten_free ? "Gluten-Free" : ""}</p>
               <Image
                 src={item.picture_url}
                 alt={item.title}

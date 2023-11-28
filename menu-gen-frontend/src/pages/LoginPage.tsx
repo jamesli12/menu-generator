@@ -8,12 +8,12 @@ const LoginPage: React.FC = () => {
   const [selected, setSelected] = React.useState("login");
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const navigate = useNavigate();
-  
+
   const handleLogin = (data: any) => {
     console.log(data);
     setIsLoggedIn(true);
     if (data.hasOwnProperty("token")) {
-      localStorage.setItem("token", data.token)
+      localStorage.setItem("token", data.token);
       navigate("/input");
     }
   };
@@ -27,12 +27,12 @@ const LoginPage: React.FC = () => {
       {!isLoggedIn && (
         <Card className="max-w-full w-[340px] h-[500px]">
           <CardBody className="overflow-hidden">
-          <Tabs
-            fullWidth
-            size="md"
-            aria-label="Tabs form"
-            selectedKey={selected}
-            onSelectionChange={handleSelectionChange}
+            <Tabs
+              fullWidth
+              size="md"
+              aria-label="Tabs form"
+              selectedKey={selected}
+              onSelectionChange={handleSelectionChange}
             >
               <Tab key="login" title="Login">
                 <LoginForm onLogin={handleLogin} />
