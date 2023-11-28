@@ -18,17 +18,21 @@ const AccountForm: React.FC<AccountFormProps> = ({ onLogin }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
+  // Function to handle registration logic
   const register = async (account: Account) => {
     const formData = new FormData();
-    formData.append('email', account.email);
-    formData.append('password', account.password);
-    formData.append('firstName', account.firstName);
-    formData.append('lastName', account.lastName);
+    formData.append("email", account.email);
+    formData.append("password", account.password);
+    formData.append("firstName", account.firstName);
+    formData.append("lastName", account.lastName);
 
-    const response = await fetch(import.meta.env["VITE_BACKEND_URI"] + "/register", {
-      method: "POST",
-      body: formData,
-    });
+    const response = await fetch(
+      import.meta.env["VITE_BACKEND_URI"] + "/register",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
 
     if (response.ok) {
       console.log("Registration successful");
@@ -38,6 +42,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ onLogin }) => {
     }
   };
 
+  // Form submission handler
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
 
