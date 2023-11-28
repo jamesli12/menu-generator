@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Card, CardHeader, CardBody, Image } from '@nextui-org/react';
 import { Menu } from './MenusPage';
+import { Card, CardHeader, CardBody, Image } from '@nextui-org/react';
+
 
 const MenuPage = () => {
   const [menu, setMenu] = useState<Menu | null>(null);
@@ -26,10 +27,10 @@ const MenuPage = () => {
         const data = await response.json();
         setMenu(data);
       } else {
-        console.error('Failed to fetch menu');
+        console.error('Failed to fetch menu!');
       }
     } catch (error) {
-      console.error('There was an error fetching the menu', error);
+      console.error('There was an error fetching the menu!', error);
     }
   };
 
