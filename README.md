@@ -2,7 +2,7 @@
 
 CS 3300 (Fall 2023) Project 2 - Group 8
 
-Deployed @ [CS3300 Project 2](https://cs3300-gcp-assignment-401202.uc.r.appspot.com/)
+App deployed @ [CS3300 Project 2](https://cs3300-gcp-assignment-401202.uc.r.appspot.com/)
 
 ## Introduction/Background
 
