@@ -51,7 +51,7 @@ const MenuPage = () => {
   }
 
   return (
-    <div className="min-h-screen p-5 bg-gray-100">
+    <div className="min-h-screen flex justify-center items-center p-5 bg-gray-100">
       <Card shadow-sm className="max-w-[400px] pb-9">
         <CardHeader className="flex flex-col gap-3">
           <h1 className="text-4xl font-bold mb-4">{menu.restaurant_name}</h1>
@@ -70,28 +70,8 @@ const MenuPage = () => {
           Starters
         </h1>
         {/* ----- */}
-        {/* <CardBody className="flex flex-col gap-3 items-center mb-2"> */}
         {menu.food_items.map((item) => (
-          // <Card key={item.title} className="mb-4 flex flex-col items-center min-w-[256px] pb-4">
-          //   <h3 className="text-xl font-bold mb-1">{item.title}</h3>
-          //   <p className="mb-1">{item.description}</p>
-          //   <p>{'$' + (item.price ? item.price : 0)}</p>
-          //   <p className="mb-1">{item.dietary_restrictions}</p>
-          //   <p className="mb-1">{item.vegetarian ? 'Vegetarian' : ''}</p>
-          //   <p className="mb-1">{item.spicy ? 'Spicy' : ''}</p>
-          //   <p className="mb-1">{item.gluten_free ? 'Gluten-Free' : ''}</p>
-          //   <Image
-          //     src={item.picture_url}
-          //     alt={item.title}
-          //     width={128}
-          //     height={128}
-          //   />
-          // </Card>
           <div
-            // style={{
-            //   border: item.title === 3 ? `1px solid #FACE8D` : "1px solid black",
-            //   borderRadius: 10,
-            // }}
             key={item.title}
             className="flex w-full mt-[16px] cursor-pointer hover:scale-95 duration-150"
           >
