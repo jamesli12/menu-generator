@@ -62,14 +62,14 @@ In our review of modern restaurant technology trends, we have identified several
   - **Justification**: Facilitates effective team collaboration and code management.
 
 ## Project Lifecycle
-  - ### 1 Conceptualization and Planning
+  - ### 1. Conceptualization and Planning
     - ### Brainstorming and Idea Generation
       - The initial stage involved brainstorming the core problem that our Menu Generator app aimed to solve and identifying MMF of our project. This stage was crucial in defining the project's scope and objectives.
     - ### Project Planning
       - We developed a project plan, outlining the goals, timeline, resource allocation, and roles and responsibilities within the team. This stage was essential for ensuring that all team members were aligned with the project's direction.
-  - ### 2 Research and Analysis
+  - ### 2. Research and Analysis
     - We evaluated technical aspects to ensure that our project was feasible and viable in the long run. We also researched some existing manu app to get some inspirations. This helped us in identifying the features that would make our app stand out.
-  - ### 3 Design and Development
+  - ### 3. Design and Development
     - ### UI/UX Design
       - Our design team worked on creating user-friendly and visually appealing interfaces. Prototypes and wireframes were developed to visualize the app's layout and user flow.
     - ### Software Development
@@ -82,7 +82,7 @@ In our review of modern restaurant technology trends, we have identified several
         - Version control is managed through GitHub.
       - ### Cloud Deployment
         - Utilizing Google Cloud Platform, we deployed our app to ensure scalability and reliability.
-  - ### 4 Testing
+  - ### 4. Testing
     - Comprehensive testing ensured a reliable and user-friendly product, enhancing overall quality.
     - ### White Box Testing
       - We used mostly unit testing, which tested primarily the login and registration functions using the requests library in Python.
