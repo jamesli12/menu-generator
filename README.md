@@ -61,7 +61,7 @@ In our review of modern restaurant technology trends, we have identified several
   - **Purpose**: Manage version control.
   - **Justification**: Facilitates effective team collaboration and code management.
 
-### Project Lifecycle
+## Project Lifecycle
   - ### Conceptualization and Planning
     - ### Brainstorming and Idea Generation
       - The initial stage involved brainstorming the core problem that our Menu Generator app aimed to solve and identifying MMF of our project. This stage was crucial in defining the project's scope and objectives.
@@ -73,7 +73,7 @@ In our review of modern restaurant technology trends, we have identified several
     - ### UI/UX Design
       - Our design team worked on creating user-friendly and visually appealing interfaces. Prototypes and wireframes were developed to visualize the app's layout and user flow.
     - ### Software Development
-      - We used agile development with iterative design and coding sprints.
+      - We used agile development with iterative design and coding sprints, which coule allow for flexibility and adaptability in development, facilitating a user-centric design and robust app functionality.
       - ### Frontend Development
         - We used TypeScript and React as our main programming languages. We used Vite as our frontend tool for our local development server.
       - ### Backend Development
@@ -83,6 +83,7 @@ In our review of modern restaurant technology trends, we have identified several
       - ### Cloud Deployment
         - Utilizing Google Cloud Platform, we deployed our app to ensure scalability and reliability.
   - ### Testing
+    - Comprehensive testing ensured a reliable and user-friendly product, enhancing overall quality.
     - ### White Box Testing
       - We used mostly unit testing, which tested primarily the login and registration functions using the requests library in Python.
     - ### Black Box Testing
