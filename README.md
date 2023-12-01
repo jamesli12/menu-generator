@@ -119,6 +119,11 @@ In our review of modern restaurant technology trends, we have identified several
   3. User Registration and Login
   This feature allows users to create personal accounts and log in to the application. It includes functionality for handling user credentials securely and detecting faulty registration information.
 ## Design
+In designing our Menu Generator app, we made pivotal decisions to enhance the functionality of the website. One such decision was the integration of QR code generation for the menus. This choice revolutionized the traditional menu concept, making it more accessible, easily changeable, cost-effective, and intelligent in functionality. Initially, we encountered challenges in displaying the QR code effectively. However, we resolved this by using an API that integrates QR generation and scanning capabilities into our app. 
+
+Another significant design choice involved the input page, where restaurant owners can input detailed information about their dishes, including descriptions and images. This design will ensure that all necessary information could be included in the menu, making the menu both informative and appealing. The major challenge we faced for this design choice was actually the complexity of uploading multiple photos. While text submission was straightforward, managing multiple image uploads presented a technical challenge. After some online research and team collaboration, we developed a solution that streamlined this process, allowing for efficient and user-friendly photo uploads.
+
+Last but not the least, we incorporated the functionality for users to create and manage multiple menus, a feature accessible from the menus page. This design choice addresses the dynamic needs of restaurants that often have multiple versions of their menu, whether for different meal times, special events, or seasonal offerings. Additionally, it facilitates easy updates and modifications. The all-in-one interface makes the process easier, allowing restaurant owners to effortlessly switch between various menus, update them as needed, and ensure their offerings are always current and accurately represented. 
 
 ## Testing
 
