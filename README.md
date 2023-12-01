@@ -64,7 +64,31 @@ In our review of modern restaurant technology trends, we have identified several
 ## Project Lifecycle
 
 ## Requirements
-
+  - ### Functional requirements:
+    - #### Register page and Login page
+      - Users can use their any email address to register a account in our website, the email address is the username of their account, the passwords are made by themselves.
+      - To log in our website, they should provide their email addresses and passwords is enough, and if they don't want to repeat this step, they can allow the website save their username and passwords automatically.
+    - #### Menu create page
+      - Users can add, delete, edit anything dishes they want to put into their menus. 
+      - For the owner who have multiple restaurants, these users can create as many as menus they want. 
+    - #### QR code generator
+      - After users provide the inputs about their dish items, our website can generate a unique qr code for each menu, after scan this code, customers can see the details of the menu on any mobile devices.
+  
+  - ### Unfunctional requirements:
+      - #### Usability:
+        - The application must be user-friendly, with a response time of no more than 3 seconds for any action. 
+        - #### Compatibility:
+        - Our website and qr code can compatible with the latest two versions of major browsers, like chrome, Safari
+        - #### Portability:
+        - Our website can easily protable acorss different operating system, such as Windows, macOS, and Linux, without significant modifications.
+        - #### Performance Requirements
+        - Our website can load less than 2 seconds under normal conditions. 
+  - ### MMF
+  1. QR code:
+  This is the most significant MMF for our project, based on this QR code generators the restaurants allowed their customers know more informations just using their mobile phones, and our website is also user friendly.
+  This feature automatically generates a QR code for the menu. Scanning the QR code with a mobile device would lead to a detailed view of the menu items, including their images and descriptions. This is useful for physical menus or display items where space is limited.
+  1. View All User's Menus/QR code
+  This feature automatically generates a QR code for the menu. Scanning the QR code with a mobile device would lead to a detailed view of the menu items, including their images and descriptions. This is useful for physical menus or display items where space is limited.
 ## Design
 
 ## Testing
