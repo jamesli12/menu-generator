@@ -61,7 +61,33 @@ In our review of modern restaurant technology trends, we have identified several
   - **Purpose**: Manage version control.
   - **Justification**: Facilitates effective team collaboration and code management.
 
-## Project Lifecycle
+### Project Lifecycle
+  - ### Conceptualization and Planning
+    - ### Brainstorming and Idea Generation
+      - The initial stage involved brainstorming the core problem that our Menu Generator app aimed to solve and identifying MMF of our project. This stage was crucial in defining the project's scope and objectives.
+    - ### Project Planning
+      - We developed a project plan, outlining the goals, timeline, resource allocation, and roles and responsibilities within the team. This stage was essential for ensuring that all team members were aligned with the project's direction.
+  - ### Research and Analysis
+    - We evaluated technical aspects to ensure that our project was feasible and viable in the long run. We also researched some existing manu app to get some inspirations. This helped us in identifying the features that would make our app stand out.
+  - ### Design and Development
+    - ### UI/UX Design
+      - Our design team worked on creating user-friendly and visually appealing interfaces. Prototypes and wireframes were developed to visualize the app's layout and user flow.
+    - ### Software Development
+      - We used agile development with iterative design and coding sprints.
+      - ### Frontend Development
+        - We used TypeScript and React as our main programming languages. We used Vite as our frontend tool for our local development server.
+      - ### Backend Development
+        - We used Flask as our core backend library, complemented by MongoDB for database management. We used QRCodeReact to generate QR codes. Additionally, our database is integrated with GCP to enhance scalability and performance.
+      - ### Version Control
+        - Version control is managed through GitHub.
+      - ### Cloud Deployment
+        - Utilizing Google Cloud Platform, we deployed our app to ensure scalability and reliability.
+  - ### Testing
+    - ### White Box Testing
+      - We used mostly unit testing, which tested primarily the login and registration functions using the requests library in Python.
+    - ### Black Box Testing
+      - We used Use Case Testing, and primarily testing basic flows that the user would go through. The test cases involved uploading menus with and without images, with single items, with different food allergies
+
 
 ## Requirements
   - ### Functional requirements:
