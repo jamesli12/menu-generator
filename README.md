@@ -69,6 +69,12 @@ In our review of modern restaurant technology trends, we have identified several
 
 ## Testing
 
+For the project, we used both white box testing and black box testing. For white box testing, we used mostly unit testing, which tested primarily the login and registration functions using the requests library in Python. An example of this test would be sending a login request with false data, then real data, and expecting an error on the first request, but the JWT token to be returned on the second request. We had also used Postman to test our endpoints, Postman is a simple REST API endpoint tester that allows the user to test various endpoints, we used Postman to test unauthorized endpoint accesses such as creating a menu with no login token, etc.
+
+For black box testing, we used Use Case Testing, and primarily testing basic flows that the user would go through. The testing primarily covered menu creation, and ensuring the images that were uploaded are being properly sent to the GCP buckets, etc. The test cases involved uploading menus with and without images, with single items, with different food allergies, etc.
+
+Testing allowed for us to quickly isolate the project, and figure out where our problems lie. When it came to the final project, we figured out, through a mix of test cases, that there were some adjustments we had to make to get the application running on GCP. Some of these adjustments included modifying the registration function, since it would take a bit longer on GCP to register than on localhost, and changing how we store login credentials for the GCP buckets. Those are some examples of various bugs we found out through the extensive testing that we had to do.
+
 #### Landing Page
 
 ![image](https://cdn.discordapp.com/attachments/1088898204948512790/1179275544328679464/Screenshot_2023-11-28_at_11.19.50_PM.png?ex=657930ef&is=6566bbef&hm=178b880d304a4312f5396b335984d71eb1a5328925385894670ab6acd14b8a43&)
