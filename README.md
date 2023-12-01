@@ -114,8 +114,10 @@ In our review of modern restaurant technology trends, we have identified several
   1. QR code:
   This is the most significant MMF for our project, based on this QR code generators the restaurants allowed their customers know more informations just using their mobile phones, and our website is also user friendly.
   This feature automatically generates a QR code for the menu. Scanning the QR code with a mobile device would lead to a detailed view of the menu items, including their images and descriptions. This is useful for physical menus or display items where space is limited.
-  1. View All User's Menus/QR code
+  2. View All User's Menus/QR code
   This feature automatically generates a QR code for the menu. Scanning the QR code with a mobile device would lead to a detailed view of the menu items, including their images and descriptions. This is useful for physical menus or display items where space is limited.
+  3. User Registration and Login
+  This feature allows users to create personal accounts and log in to the application. It includes functionality for handling user credentials securely and detecting faulty registration information.
 ## Design
 
 ## Testing
