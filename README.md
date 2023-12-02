@@ -101,7 +101,7 @@ In our review of modern restaurant technology trends, we have identified several
     - #### QR code generator
       - After users provide the inputs about their dish items, our website can generate a unique qr code for each menu, after scan this code, customers can see the details of the menu on any mobile devices.
   
-  - ### Unfunctional requirements:
+  - ### Nonfunctional requirements:
       - #### Usability:
         - The application must be user-friendly, with a response time of no more than 3 seconds for any action. 
         - #### Compatibility:
