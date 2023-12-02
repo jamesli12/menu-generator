@@ -121,10 +121,10 @@ In our review of modern restaurant technology trends, we have identified several
 ## Design
 <img width="660" alt="Screenshot 2023-12-01 at 7 07 05 PM" src="https://github.com/jamesli12/menu-generator/assets/144555686/033a9f75-83f6-4563-9c4e-dd732ecb8700">
 
-##Class Diagram
+## Class Diagram
 <img width="560" alt="Screenshot 2023-12-01 at 7 16 06 PM" src="https://github.com/jamesli12/menu-generator/assets/144555686/7a5da083-ca10-442b-bf5e-76304e8ade0c">
 
-##Architecture Diagram
+## Architecture Diagram
 
 
 In designing our Menu Generator app, we made pivotal decisions to enhance the functionality of the website. One such decision was the integration of QR code generation for the menus. This choice revolutionized the traditional menu concept, making it more accessible, easily changeable, cost-effective, and intelligent in functionality. Initially, we encountered challenges in displaying the QR code effectively. However, we resolved this by using an API that integrates QR generation and scanning capabilities into our app. 
