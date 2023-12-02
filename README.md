@@ -120,7 +120,11 @@ In our review of modern restaurant technology trends, we have identified several
   This feature allows users to create personal accounts and log in to the application. It includes functionality for handling user credentials securely and detecting faulty registration information.
 ## Design
 <img width="660" alt="Screenshot 2023-12-01 at 7 07 05 PM" src="https://github.com/jamesli12/menu-generator/assets/144555686/033a9f75-83f6-4563-9c4e-dd732ecb8700">
+
+Class Diagram
 <img width="560" alt="Screenshot 2023-12-01 at 7 16 06 PM" src="https://github.com/jamesli12/menu-generator/assets/144555686/7a5da083-ca10-442b-bf5e-76304e8ade0c">
+
+Architecture Diagram
 In designing our Menu Generator app, we made pivotal decisions to enhance the functionality of the website. One such decision was the integration of QR code generation for the menus. This choice revolutionized the traditional menu concept, making it more accessible, easily changeable, cost-effective, and intelligent in functionality. Initially, we encountered challenges in displaying the QR code effectively. However, we resolved this by using an API that integrates QR generation and scanning capabilities into our app. 
 
 Another significant design choice involved the input page, where restaurant owners can input detailed information about their dishes, including descriptions and images. This design will ensure that all necessary information could be included in the menu, making the menu both informative and appealing. The major challenge we faced for this design choice was actually the complexity of uploading multiple photos. While text submission was straightforward, managing multiple image uploads presented a technical challenge. After some online research and team collaboration, we developed a solution that streamlined this process, allowing for efficient and user-friendly photo uploads.
